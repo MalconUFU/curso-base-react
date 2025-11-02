@@ -1,9 +1,12 @@
-export function App() {
+import { Home } from "./pages/Home";
+import { AppLayout } from "./shared/layout/AppLayout";
 
-  return(
+export function App() {
+  return (
     <>
-      Olá
+      <AppLayout>
+        <Home/>
+      </AppLayout>
     </>
   )
-
 }

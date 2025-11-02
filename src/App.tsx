@@ -1,12 +1,13 @@
-import { Home } from "./pages/Home";
-import { AppLayout } from "./shared/layout/AppLayout";
+import { AppRoutes } from "./Router";
+import { AuthProvider } from "./shared/contexts/AuthContext";
 
 export function App() {
+
   return (
     <>
-      <AppLayout>
-        <Home/>
-      </AppLayout>
+      <AuthProvider>
+        <AppRoutes />
+      </AuthProvider>
     </>
   )
 }

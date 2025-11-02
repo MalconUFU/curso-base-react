@@ -1,24 +1,34 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import InputAddStyles from './InputAdd.module.css';
 
-interface IInputAddProps{
+interface IInputAddProps {
     onAdd(value: string): void;
 }
 
 export const InputAdd = (props: IInputAddProps) => {
+
+    const inputRef = useRef<HTMLInputElement>(null);
+
     const [value, setValue] = useState('');
 
-    const handleAdd = () =>{
+    const handleAdd = () => {
         props.onAdd(value);
-        setValue('')
+        setValue('');
+        inputRef.current?.focus();
     }
 
     return (
-        <div>
+        <div className={InputAddStyles.Container}>
             {/*INPUT DE UM NOVO ITEM*/}
-            <input value={value} onChange={(e) => setValue(e.target.value)} />
+            <input
+                value={value}
+                ref={inputRef}
+                className={InputAddStyles.Input}
+                onChange={(e) => setValue(e.target.value)}
+            />
 
             {/*ADICIONAR ITEM NA LISTA*/}
-            <button onClick={handleAdd}> Adicionar
+            <button onClick={handleAdd} className={InputAddStyles.Button}> Adicionar
             </button>
         </div>
     )

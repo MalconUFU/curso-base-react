@@ -1,30 +1,31 @@
+import TodoItemStyles from './TodoItem.module.css';
+import { Link } from 'react-router';
+
 interface ITodoItemProps {
-    id: string,
-    label: string,
-    complete: boolean,
-    onComplete(): void
-    onRemove(): void
+  id: string;
+  label: string;
+  complete: boolean;
+
+  onRemove(): void;
+  onComplete(): void;
 }
-
 export const TodoItem = ({ id, label, complete, onComplete, onRemove }: ITodoItemProps) => {
+  return (
+    <li key={id} className={TodoItemStyles.Item} data-complete={complete}>
+      <Link to={`/detalhe/${id}`} className={TodoItemStyles.Text}>
+        {label}
+      </Link>
 
-    return (
-        <div>
-            <li key={id}>
-                {label}
-
-                {complete ? 'Concluído' : ''}
-
-                {/*CONCLUIR ITEM DA LISTA*/}
-                <button onClick={onComplete}>
-                    Concluir
-                </button>
-
-                {/*REMOVER ITEM DA LISTA*/}
-                <button onClick={onRemove}>
-                    Remover
-                </button>
-            </li>
-        </div>
-    )
+      <div className={TodoItemStyles.ButtonsGroup}>
+        {!complete && (
+          <button onClick={onComplete} className={TodoItemStyles.ButtonComplete}>
+            Concluir
+          </button>
+        )}
+        <button onClick={onRemove} className={TodoItemStyles.ButtonRemove}>
+          Remover
+        </button>
+      </div>
+    </li>
+  );
 }

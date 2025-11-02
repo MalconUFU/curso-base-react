@@ -3,6 +3,8 @@ import { List } from "../components/List";
 import { TodoAPI, type ITodo } from "../shared/services/api/TodoAPI";
 import { InputAdd } from "../components/InputAdd";
 import { TodoItem } from "../components/TodoItem";
+import { PageLayout } from "../shared/layout/page-layout/PageLayout";
+
 
 export const Home = () => {
 
@@ -27,9 +29,8 @@ export const Home = () => {
       .then(() => setList([...list.filter(item => item.id !=  id)]))
   }
 
-  return (
-    <>
-
+  return(
+    <PageLayout title='Página Inicial'>
       <InputAdd onAdd={handleAdd} />
 
       <List>
@@ -49,6 +50,6 @@ export const Home = () => {
           />
         ))}
       </List>
-    </>
+    </PageLayout>
   )
 }
